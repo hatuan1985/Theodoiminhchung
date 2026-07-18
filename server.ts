@@ -190,7 +190,7 @@ const saveDBState = (state: DatabaseState) => {
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   // Increase payload size limit to support base64 file uploads (3MB max requested, so 10MB limit is generous)
   app.use(express.json({ limit: "10mb" }));
@@ -682,7 +682,7 @@ async function startServer() {
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://0.0.0.0:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
   });
 }
 
